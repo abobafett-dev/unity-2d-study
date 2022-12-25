@@ -102,5 +102,6 @@ public class DialogController : MonoBehaviour
         _isDialog = false;
         _canvas.gameObject.SetActive(false);
         _camera.Follow = _player.transform; //todo это возможно уберём
+        FaderController.instance.NextScene();
     }
 }

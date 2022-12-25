@@ -11,6 +11,8 @@ public class FaderController : MonoBehaviour
     private bool _isLoading;
 
     private static FaderController _instance;
+    
+    public static FaderController instance => _instance;
 
     private void Awake()
     {
@@ -36,10 +38,15 @@ public class FaderController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            LoadScene(_scenes.Dequeue());
+            NextScene();
         }
     }
 
+    public void NextScene()
+    {
+        LoadScene(_scenes.Dequeue());
+    }
+    
     private void LoadScene(string sceneName)
     {
         if (_isLoading)
