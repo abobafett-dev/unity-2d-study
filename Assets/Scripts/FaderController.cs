@@ -28,11 +28,12 @@ public class FaderController : MonoBehaviour
         _scenes = new Queue<string>();
         _scenes.Enqueue("F0");
         _scenes.Enqueue("F0");
-        _scenes.Enqueue("L0");
-        _scenes.Enqueue("F0");
         _scenes.Enqueue("L1");
         _scenes.Enqueue("F0");
         _scenes.Enqueue("L2");
+        _scenes.Enqueue("F0");
+        _scenes.Enqueue("L0");
+        _scenes.Enqueue("F0");
         _scenes.Enqueue("mainMenu");
         
         _instance = this;
