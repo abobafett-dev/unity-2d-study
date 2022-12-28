@@ -9,6 +9,7 @@ public class Fader : MonoBehaviour
 
     private static Fader _instance;
 
+    public Canvas canvas;
     public static Fader instance
     {
         get
@@ -24,6 +25,15 @@ public class Fader : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        if (canvas == null)
+        {
+            canvas = GetComponent<Canvas>();
+            canvas.enabled = false;
+        }
+    }
+
     public bool isFading { get; private set; }
 
     private Action _fadedInCallback;
@@ -34,6 +44,7 @@ public class Fader : MonoBehaviour
         if (isFading)
             return;
 
+        canvas.enabled = true;
         isFading = true;
         _fadedInCallback = fadedInCallback;
         _animator.SetBool("faded", true);
@@ -43,7 +54,7 @@ public class Fader : MonoBehaviour
     {
         if (isFading)
             return;
-
+        
         isFading = true;
         _fadedOutCallback = fadedOutCallback;
         _animator.SetBool("faded", false);

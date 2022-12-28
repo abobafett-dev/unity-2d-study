@@ -14,6 +14,9 @@ public class FaderController : MonoBehaviour
     
     public static FaderController instance => _instance;
 
+    public int _countLoad;
+    public float _playerSpeed = 2f;
+
     private void Awake()
     {
         if (_instance != null)
@@ -23,12 +26,14 @@ public class FaderController : MonoBehaviour
         }
 
         _scenes = new Queue<string>();
-        // _scenes.Enqueue("F0");
+        _scenes.Enqueue("F0");
+        _scenes.Enqueue("F0");
         _scenes.Enqueue("L0");
-        _scenes.Enqueue("F1");
+        _scenes.Enqueue("F0");
         _scenes.Enqueue("L1");
-        _scenes.Enqueue("F2");
+        _scenes.Enqueue("F0");
         _scenes.Enqueue("L2");
+        _scenes.Enqueue("mainMenu");
         
         _instance = this;
         DontDestroyOnLoad(gameObject);
@@ -44,6 +49,7 @@ public class FaderController : MonoBehaviour
 
     public void NextScene()
     {
+        _countLoad++;
         LoadScene(_scenes.Dequeue());
     }
     
@@ -53,8 +59,8 @@ public class FaderController : MonoBehaviour
             return;
 
         var currentSceneName = SceneManager.GetActiveScene().name;
-        if (currentSceneName == sceneName)
-            throw new Exception("Сцена уже загружена");
+        // if (currentSceneName == sceneName)
+        //     throw new Exception("Сцена уже загружена");
 
         StartCoroutine(LoadSceneRoutine(sceneName));
     }
@@ -84,5 +90,6 @@ public class FaderController : MonoBehaviour
             yield return null;
 
         _isLoading = false;
+        Fader.instance.canvas.enabled = false;
     }
 }

@@ -1,15 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class mainMenuManager : MonoBehaviour
+public class MainMenuManager : MonoBehaviour
 {
     public GameObject developersPanel;
 
     public void PlayGame()
     {
-        Application.LoadLevel("F0");
+        FaderController.instance.NextScene();
     }
 
     public void ExitGame()
