@@ -1,8 +1,6 @@
-using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class CanvasPlacer : MonoBehaviour, IPointerEnterHandler
+public class CanvasPlacer : MonoBehaviour
 {
     void Start()
     {
@@ -18,10 +16,5 @@ public class CanvasPlacer : MonoBehaviour, IPointerEnterHandler
     private void OnDestroy()
     {
         CanvasShow.Show -= ShowButton;
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        Debug.Log("Навёл");
     }
 }

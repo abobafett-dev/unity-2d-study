@@ -7,10 +7,11 @@ public class CanvasShow : MonoBehaviour
     public static event ShowEvent Show;
     
     protected bool isTrigger = false;
+    protected bool bloced = false;
     
     protected void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag.Equals("Player"))
+        if (col.tag.Equals("Player") && !bloced)
         {
             Show?.Invoke(true);
             isTrigger = true;

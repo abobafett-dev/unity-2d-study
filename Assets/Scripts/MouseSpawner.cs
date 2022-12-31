@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class MouseSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
 
     public int _count = 1;
 

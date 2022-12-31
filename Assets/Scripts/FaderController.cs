@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class FaderController : MonoBehaviour
 {
-    private Queue<string> _scenes;
+    private List<string> _scenes;
+    private int _scenesIndex;
 
     private bool _isLoading;
 
     private static FaderController _instance;
-    
+
     public static FaderController instance => _instance;
 
     public int _countLoad;
@@ -25,17 +25,17 @@ public class FaderController : MonoBehaviour
             return;
         }
 
-        _scenes = new Queue<string>();
-        _scenes.Enqueue("F0");
-        _scenes.Enqueue("F0");
-        _scenes.Enqueue("L1");
-        _scenes.Enqueue("F0");
-        _scenes.Enqueue("L2");
-        _scenes.Enqueue("F0");
-        _scenes.Enqueue("L0");
-        _scenes.Enqueue("F0");
-        _scenes.Enqueue("mainMenu");
-        
+        _scenes = new List<string>();
+        _scenes.Add("F0");
+        _scenes.Add("F0");
+        _scenes.Add("L1");
+        _scenes.Add("F0");
+        _scenes.Add("L2");
+        _scenes.Add("F0");
+        _scenes.Add("L0");
+        _scenes.Add("F0");
+        _scenes.Add("mainMenu");
+
         _instance = this;
         DontDestroyOnLoad(gameObject);
     }
@@ -50,14 +50,19 @@ public class FaderController : MonoBehaviour
 
     public void NextScene()
     {
-        _countLoad++;
-        LoadScene(_scenes.Dequeue());
+        LoadScene(_scenes[_scenesIndex]);
     }
-    
+
     private void LoadScene(string sceneName)
     {
         if (_isLoading)
             return;
+
+        _countLoad++;
+        _scenesIndex++;
+
+        if (_scenesIndex == _scenes.Count)
+            _scenesIndex = 0;
 
         var currentSceneName = SceneManager.GetActiveScene().name;
         // if (currentSceneName == sceneName)

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -19,17 +18,6 @@ public class Bolt : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
     {
         _screwdriverIsReady = true;
     }
-
-    // public void OnPointerDown(PointerEventData eventData)
-    // {
-    //     if (_screwdriverIsReady)
-    //     {
-    //         PickUp?.Invoke();
-    //         Destroy(gameObject);
-    //     }
-    //
-    //     // base.OnPointerDown(eventData);
-    // }
 
     public void OnPointerClick(PointerEventData eventData)
     {

@@ -15,14 +15,14 @@ public class DialogFragment
         Text = text;
         Style = FontStyles.Normal;
     }
-    
+
     public DialogFragment(GameObject entity, string text, FontStyles style)
     {
         Entity = entity;
         Text = text;
         Style = style;
     }
-    
+
     public DialogFragment(GameObject entity, string text, Action action)
     {
         Entity = entity;

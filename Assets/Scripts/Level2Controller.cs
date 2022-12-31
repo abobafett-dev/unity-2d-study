@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 
 public class Level2Controller : MonoBehaviour
@@ -6,8 +5,6 @@ public class Level2Controller : MonoBehaviour
     private int _controlCount;
     private int _currentCount;
     
-    // private bool isPickUp;
-
     private void Start()
     {
         var puddles = FindObjectsOfType<Puddle>();

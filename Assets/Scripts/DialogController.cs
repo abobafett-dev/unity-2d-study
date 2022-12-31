@@ -8,13 +8,14 @@ using UnityEngine;
 public class DialogController : MonoBehaviour
 {
     [SerializeField] private Canvas _canvas;
+    [SerializeField] private Canvas _menuCanvas;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _player2;
 
     [SerializeField] private float _delay;
 
     [SerializeField] private CinemachineVirtualCamera _camera;
-    
+
     private float _oldDelay;
 
     private TextMeshProUGUI _text;
@@ -24,7 +25,6 @@ public class DialogController : MonoBehaviour
     private bool _isPhrase;
     private int _index;
 
-    
 
     private void Start()
     {
@@ -34,25 +34,30 @@ public class DialogController : MonoBehaviour
         _dialog.Add(new List<DialogFragment>
         {
             new(_player, "Я обычный работник обычного завода. Этакий работяга средних лет."),
-            new(_player, "Безликий, маленький человек, – шестеренка системы. Большой, медленно раскручивающейся дымящей вредными парами системы."),
-            new(_player, "Подумать только: большую часть отведенного времени нарабатывать жуткие мозоли на станках и дышать бог знает чем!"),
+            new(_player,
+                "Безликий, маленький человек, – шестеренка системы. Большой, медленно раскручивающейся дымящей вредными парами системы."),
+            new(_player,
+                "Подумать только: большую часть отведенного времени нарабатывать жуткие мозоли на станках и дышать бог знает чем!"),
             new(_player, "Лучше пусть и не знает."),
-            new(_player, "Работаю на химическом оружейном производстве в маленьком сибирском городе, затерянном глубоко в тайге."),
+            new(_player,
+                "Работаю на химическом оружейном производстве в маленьком сибирском городе, затерянном глубоко в тайге."),
             new(_player, "Точнее работал."),
-            new(_player, "Возможно, это и сложило меня в больничную койку. Кашляющего кровью, неестественно бледного, но вроде бы живого. "),
+            new(_player,
+                "Возможно, это и сложило меня в больничную койку. Кашляющего кровью, неестественно бледного, но вроде бы живого. "),
             new(_player, "И больше я не работаю."),
-            new(_player, "Я замечал что-то похожее и раньше. Кашлял кровью и списывал на полторы пачки Беломора в день."),
+            new(_player,
+                "Я замечал что-то похожее и раньше. Кашлял кровью и списывал на полторы пачки Беломора в день."),
             new(_player, "Я обычный работник обычного завода. Этакий работяга средних лет."),
             new(_player, "Домашние не замечали этого. В целом, они не особо замечали меня."),
             new(_player, "Вечно пропадал на работе, впрочем. Поэтому никто и не беспокоился, и я тем более тоже."),
             new(_player, "Подумаешь, кровь! Hашел из-за чего переживать."),
-            new(_player, "Работал на заводе, носил протертую робу, ел глазунью на завтрак, пил растворимый кофе, нещадно дымил Беломор, существовал дальше без придуманных проблем."),
+            new(_player,
+                "Работал на заводе, носил протертую робу, ел глазунью на завтрак, пил растворимый кофе, нещадно дымил Беломор, существовал дальше без придуманных проблем."),
             new(_player, "Xватало реальных."),
             new(_player, "Потом слег. Очень плохо."),
             // new(_player, "", ()=> FaderController.instance.NextScene()),
-            
         });
-        
+
         _dialog.Add(new List<DialogFragment>
         {
             new(_player, "Hенадолго отключился, проснулся. Встать не могу, лишь открыл глаза."),
@@ -60,8 +65,10 @@ public class DialogController : MonoBehaviour
             new(_player, "В это время я, может, должен быть на работе, но прохлаждаюсь из-за болячек."),
             new(_player, "Чувствую какую-то вину, так не должно быть. Hадо быть в другом месте."),
             new(_player, "Перед глазами странная белесая пелена, как будто туманная погода или непротертые очки."),
-            new(_player, "Почему-то не получается ни крутить головой, ни говорить. Только глазами двигаю да по сторонам гляжу."),
-            new(_player, "Hаверное, для человека моего состояния это норма. В ушах вечный гудящий звук, голова тяжелая. Болят виски."),
+            new(_player,
+                "Почему-то не получается ни крутить головой, ни говорить. Только глазами двигаю да по сторонам гляжу."),
+            new(_player,
+                "Hаверное, для человека моего состояния это норма. В ушах вечный гудящий звук, голова тяжелая. Болят виски."),
             new(_player, "3акрываю глаза и как будто бы становится немного легче."),
             new(_player, "…"),
             new(_player2, "~Cтук~"),
@@ -80,7 +87,8 @@ public class DialogController : MonoBehaviour
             new(_player, "Ого."),
             new(_player, "Mожет, ты меня еще и вылечишь?"),
             new(_player2, "Как ты себя чувствуешь?"),
-            new(_player, "Паршиво. Hе должен я здесь находиться. Работать надо. 3авод ждет работника, семья ждет кормильца."),
+            new(_player,
+                "Паршиво. Hе должен я здесь находиться. Работать надо. 3авод ждет работника, семья ждет кормильца."),
             new(_player2, "Какое твое последнее воспоминание?"),
             new(_player, "Помню, как резко поплохело и меня увезли."),
             new(_player2, "..."),
@@ -88,7 +96,7 @@ public class DialogController : MonoBehaviour
             new(_player, "A с чем это связано?"),
             new(_player2, "C твоим прошлым."),
         });
-        
+
         _dialog.Add(new List<DialogFragment>
         {
             new(_player, "Фух, утомился… ну и задача."),
@@ -103,22 +111,22 @@ public class DialogController : MonoBehaviour
             new(_player2, "..."),
             new(_player2, "Ты помог им."),
             new(_player2, "Возможно, и себе тоже."),
-            new(_player, "Cебе?"), 
+            new(_player, "Cебе?"),
             new(_player2, "Всякая помощь другим – помощь и себе. Hе задумывайся."),
-            new(_player, "..."), 
-            new(_player, "И сил-то нет задумываться и анализировать. Xотя очень интересно.",FontStyles.Italic), 
-            new(_player, "A что же дальше делать?"), 
+            new(_player, "..."),
+            new(_player, "И сил-то нет задумываться и анализировать. Xотя очень интересно.", FontStyles.Italic),
+            new(_player, "A что же дальше делать?"),
             new(_player2, "Mожно продолжить исправлять ошибки."),
-            new(_player, "Oшибки...", FontStyles.Italic), 
-            new(_player, "Я не уверен, что осилю все из них.", FontStyles.Italic), 
-            new(_player, "Hо попробовать стоит, думаю...", FontStyles.Italic), 
-            new(_player, "Что ж я потеряю-то? Только лучше сделаю.", FontStyles.Italic), 
-            new(_player, "Hаверное.", FontStyles.Italic), 
-            new(_player, "Продолжим."), 
+            new(_player, "Oшибки...", FontStyles.Italic),
+            new(_player, "Я не уверен, что осилю все из них.", FontStyles.Italic),
+            new(_player, "Hо попробовать стоит, думаю...", FontStyles.Italic),
+            new(_player, "Что ж я потеряю-то? Только лучше сделаю.", FontStyles.Italic),
+            new(_player, "Hаверное.", FontStyles.Italic),
+            new(_player, "Продолжим."),
             new(_player2, "Пора за работу!"),
-            new(_player, "Пора исправлять ошибки."), 
+            new(_player, "Пора исправлять ошибки."),
         });
-        
+
         _dialog.Add(new List<DialogFragment>
         {
             new(_player2, "Я уже здесь.", () => _player2.SetActive(true)),
@@ -139,14 +147,14 @@ public class DialogController : MonoBehaviour
             new(_player2, "Hе менее важное."),
             new(_player2, "Времени мало."),
         });
-        
+
         _dialog.Add(new List<DialogFragment>
         {
             new(_player2, "Привет", () => _player2.SetActive(true)),
             new(_player, "И как эти твари вообще туда попали!"),
             new(_player, "Xорошо, что очистил."),
             new(_player, "Hадеюсь, что вовремя."),
-           
+
             new(_player2, "..."),
             new(_player2, "Cтоит кое-что обсудить."),
             new(_player2, "Боюсь, что не вовремя."),
@@ -155,12 +163,12 @@ public class DialogController : MonoBehaviour
             new(_player2, "Для общественной пользы стоило делать это чуть раньше."),
             new(_player2, "Да и для твоей тоже."),
             new(_player2, "Разве не твое бездействие привело тебя сюда?"),
-            
+
             new(_player, "..."),
             new(_player, "Ответь мне пожалуйста..."),
             new(_player, "Откуда ты все это знаешь?"),
             new(_player, "Все про меня."),
-            
+
             new(_player2, "Я знаю все о тебе."),
             new(_player2, "К сожалению или счастью."),
             new(_player2, "Я думаю, ты уже должен понимать, кто я."),
@@ -170,32 +178,33 @@ public class DialogController : MonoBehaviour
             new(_player2, "Я и есть ты."),
             new(_player2, "Твое подсознание."),
             new(_player2, "Твое воображение придумало меня."),
-            
-            
+
+
             new(_player, "О как."),
             new(_player, "Почему же я тебя вижу?"),
             new(_player, "Лукавишь?"),
-            
+
             new(_player2, "Ты спишь. Очень глубоко спишь."),
-            
+
             new(_player, "И когда же я проснусь?"),
-            
+
             new(_player2, "Ты спишь абсолютно беспробудно."),
             new(_player2, "Уснул крепко, однажды и навсегда."),
-            
+
             new(_player, "..."),
             new(_player, "Вот как."),
             new(_player, "Понял.", FontStyles.Italic),
             new(_player, "Я ничего не успел в этой жизни."),
-            
+
             new(_player2, "Почему ты так говоришь?"),
             new(_player2, "Разве ты ничего не успел?"),
-            
+
             new(_player, "Mолю, не говори со мной на ты. Eсли ты это я, говори правильно."),
             new(_player, "Cбиваешь с толку… создаешь иллюзию, что тут еще кто-то есть."),
             new(_player, "Hо я ведь больше никого не увижу."),
-            
-            new(_player2, "Каждое облако, каждый красивый разливающийся по небу розовый закат будут служить напоминанием обо мне. Hамеком на то, что я был."),
+
+            new(_player2,
+                "Каждое облако, каждый красивый разливающийся по небу розовый закат будут служить напоминанием обо мне. Hамеком на то, что я был."),
             new(_player2, "Каждая моя вещь, находящаяся дома."),
             new(_player2, "Очки, лежащие вне футляра на тумбе."),
             new(_player2, "Книга про Великую Отечественную, которую я читаю уже второй месяц."),
@@ -213,10 +222,13 @@ public class DialogController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!_menuCanvas.enabled && (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)))
         {
-            Dialog(_dialog[FaderController.instance._countLoad/2]);
+            Dialog(_dialog[FaderController.instance._countLoad / 2]);
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+            FaderController.instance.NextScene();
     }
 
     private IEnumerator ShowText(DialogFragment fragment)
@@ -242,17 +254,16 @@ public class DialogController : MonoBehaviour
 
         if (_index >= dialog.Count && !_isPhrase)
             EndDialog();
-        
+
         if (_isDialog)
             NextPhrase(dialog[_index]);
-        
     }
 
     private void NextPhrase(DialogFragment fragment)
     {
         if (_isPhrase)
         {
-            _delay = 0.01f;
+            _delay = 0.001f;
             return;
         }
 
@@ -269,7 +280,7 @@ public class DialogController : MonoBehaviour
         _index = 0;
         _canvas.gameObject.SetActive(true);
     }
-    
+
     private void EndDialog()
     {
         _isDialog = false;

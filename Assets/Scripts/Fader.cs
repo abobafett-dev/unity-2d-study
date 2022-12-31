@@ -10,6 +10,7 @@ public class Fader : MonoBehaviour
     private static Fader _instance;
 
     public Canvas canvas;
+
     public static Fader instance
     {
         get
@@ -54,7 +55,7 @@ public class Fader : MonoBehaviour
     {
         if (isFading)
             return;
-        
+
         isFading = true;
         _fadedOutCallback = fadedOutCallback;
         _animator.SetBool("faded", false);
