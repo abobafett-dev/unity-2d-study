@@ -24,6 +24,7 @@
 /[Aa]ssets/Plugins/Editor/JetBrains*
 
 # Jetbrains IDE's cache directory
+.idea
 
 # Visual Studio cache directory
 .vs/
